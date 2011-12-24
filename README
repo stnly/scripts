@@ -25,3 +25,5 @@ $crontab -e
 
 To list all cron jobs,
 $crontab -l
+
+Or use your cPanel to edit the cronjob.
