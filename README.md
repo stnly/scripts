@@ -35,7 +35,7 @@ Or use your cPanel to edit the cronjob.
 
 The Uncopyright License
 
-Uncopyright (c) 2011 Stanley Tan
+Uncopyright (uc) 2011 Stanley Tan
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
