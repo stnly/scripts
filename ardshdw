@@ -1,0 +1,32 @@
+#!/bin/sh
+# Adds a dropshadow to the image
+# -background white for .jpgs
+# -background none for others
+
+FIN=$1
+FOUT=$(echo $1 | sed -e 's/.\(jpg\|jpeg\|png\|tif\)$//i')-shadow.$(echo $1 | sed -e 's/.*.\(jpg\|jpeg\|png\|tif\)$/\1/i')
+ 
+#Uncomment the next line if you want to "mogrify" the input file.
+#FOUT=$FIN
+ 
+# Change this viewer if you don't have gpicview on your system.
+VIEWER=feh
+if [[ ! -e $FIN ]]; then
+  echo "$FIN" is neither a file or directory
+elif [[ $FIN == *.jpg ]] || [[ $FIN == *.jpeg ]]; then
+  if [ ! -z $2 ] ; then 
+    convert $FIN -frame $2 $FOUT
+    FIN=$FOUT
+  fi
+  convert $FIN \( +clone  -background black  -shadow 150x30+0+0 \) +swap -background white -layers merge +repage $FOUT
+  echo "Added shadow to: $FOUT"
+  $VIEWER $FOUT
+else
+  if [ ! -z $2 ] ; then 
+    convert $FIN -frame $2 $FOUT
+    FIN=$FOUT
+  fi
+  convert $FIN \( +clone  -background black  -shadow 150x30+0+0 \) +swap -background none -layers merge +repage $FOUT
+  echo "Added shadow to: $FOUT"
+  $VIEWER $FOUT
+fi

@@ -1,0 +1,6 @@
+#!/bin/bash
+(killall -e tint2) &
+(killall -e neap) &
+(sleep 1 && tint2) &
+(sleep 1 && neap) & 
+(sleep 5 && exit )
